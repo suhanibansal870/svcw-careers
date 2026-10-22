@@ -1,0 +1,99 @@
+/* Green Careers: behavior-level styles Tailwind utilities don't cover.
+   Motion stays between 200 and 600ms, ease-out, and is switched off for reduced motion. */
+
+/* Page transition: fade in on load, fade out before navigating */
+.js body { opacity: 0; transition: opacity .25s ease-out; }
+.js body.is-ready { opacity: 1; }
+
+/* Header: hides on scroll down, returns on scroll up, compacts after the hero */
+[data-header].is-compact .hdr-inner { height: 4rem; }
+
+/* Mobile menu */
+.menu { visibility: hidden; opacity: 0; transition: opacity .35s ease-out, visibility 0s linear .35s; }
+.menu.is-open { visibility: visible; opacity: 1; transition: opacity .35s ease-out; }
+.menu li { opacity: 0; transform: translateY(16px); transition: opacity .45s ease-out, transform .45s ease-out; }
+.menu.is-open li { opacity: 1; transform: none; }
+.menu.is-open li:nth-child(2) { transition-delay: .05s; }
+.menu.is-open li:nth-child(3) { transition-delay: .1s; }
+.menu.is-open li:nth-child(4) { transition-delay: .15s; }
+.menu.is-open li:nth-child(5) { transition-delay: .2s; }
+
+/* Scroll reveal with stagger (delay set inline by app.js) */
+.js [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Images fade in once loaded; parallax images get a will-change hint */
+img[data-img] { opacity: 0; transition: opacity .6s ease-out; }
+img[data-img].is-loaded { opacity: 1; }
+img[data-parallax] { will-change: transform; }
+
+/* Hero rotating word */
+.rotator { display: inline-block; }
+.rotator [data-rotate-word] { display: inline-block; transition: opacity .35s ease-out, transform .35s ease-out; }
+.rotator .is-out { opacity: 0; transform: translateY(.3em); }
+.rotator { color: #b9e3a6; }
+
+/* Scroll-down button */
+.scroll-down svg { animation: nudge 2s ease-in-out infinite; }
+@keyframes nudge { 0%,100% { transform: none; } 50% { transform: translateY(4px); } }
+
+/* Horizontal scroll rows */
+.hscroll { scrollbar-width: none; scroll-padding-left: 1.5rem; }
+.hscroll::-webkit-scrollbar { display: none; }
+
+/* Paths timeline */
+.path-tab[aria-selected="true"] .path-dot { background: #377a29; }
+.path-tab[aria-selected="false"] { color: rgba(28, 35, 64, .55); }
+.path-tab:hover { color: #1c2340; }
+[data-path-panel] { animation: fadeUp .4s ease-out; }
+
+/* Career panel: side panel on desktop, full-screen sheet on mobile */
+.panel-backdrop { opacity: 0; visibility: hidden; transition: opacity .35s ease-out, visibility 0s linear .35s; }
+.panel-backdrop.is-open { opacity: 1; visibility: visible; transition: opacity .35s ease-out; }
+.panel { inset: 0; transform: translateY(100%); visibility: hidden; transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility 0s linear .45s; }
+.panel.is-open { transform: none; visibility: visible; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+@media (min-width: 768px) {
+  .panel { inset: 0 0 0 auto; width: min(600px, 92vw); transform: translateX(100%); }
+}
+
+/* Careers tabs: one career shown at a time */
+.js .career-panel { display: none; }
+.js .career-panel.is-active { display: block; animation: fadeUp .4s ease-out; }
+.ctab.is-active { background: #1c2340; border-color: #1c2340; color: #f7f6f2; }
+
+/* Video tabs */
+.vtab { position: relative; padding: 0 0 14px; font-size: 15px; color: rgba(28, 35, 64, .55); white-space: nowrap; transition: color .3s ease-out; }
+.vtab:hover, .vtab.is-active { color: #1c2340; }
+
+/* Lightbox */
+.lightbox { opacity: 0; visibility: hidden; transition: opacity .3s ease-out, visibility 0s linear .3s; }
+.lightbox.is-open { opacity: 1; visibility: visible; transition: opacity .3s ease-out; }
+
+/* Quiz screens */
+.quiz-screen { animation: fadeUp .45s ease-out; }
+.quiz-screen.is-leaving { animation: fadeOut .2s ease-out forwards; }
+.q-option[aria-checked="true"] { border-color: #1c2340; background: rgba(55, 122, 41, .08); }
+.q-option[aria-checked="true"] .q-key { background: #1c2340; color: #f7f6f2; border-color: #1c2340; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fadeOut { to { opacity: 0; transform: translateY(-8px); } }
+
+/* Accordion */
+.acc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease-out; }
+.acc-panel > div { overflow: hidden; }
+.acc-panel.is-open { grid-template-rows: 1fr; }
+[aria-expanded="true"] .acc-icon { transform: rotate(45deg); }
+
+/* Form errors */
+[data-field].has-error .field { border-color: #a33a2b; }
+[data-field].has-error .err { display: block; }
+
+/* Focus */
+:focus-visible { outline: 2px solid #377a29; outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; }
+
+body.no-scroll { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .js body, .js [data-reveal], img[data-img] { opacity: 1 !important; transform: none !important; }
+}
