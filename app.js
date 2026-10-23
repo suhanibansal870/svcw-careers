@@ -199,7 +199,7 @@
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
     $("[data-lb-player]", lightbox).innerHTML = "";
-    if (!panelOpen()) document.body.classList.remove("no-scroll");
+    if (!panelOpen() && !$("[data-guide-viewer].is-open")) document.body.classList.remove("no-scroll");
     lastFocus && lastFocus.focus();
   };
   if (lightbox) {
@@ -489,6 +489,67 @@
       setTimeout(function () { document.getElementById("fn").focus({ preventScroll: true }); }, 400);
     });
   }
+
+  /* ---------- Career guide viewer (interviews page) ---------- */
+  (function () {
+    var gv = $("[data-guide-viewer]");
+    if (!gv) return;
+    var pages = []; try { pages = JSON.parse(gv.getAttribute("data-guide")) || []; } catch (err) { return; }
+    var cur = 0, opener = null;
+    var img = $("[data-gv-img]", gv), watch = $("[data-gv-watch]", gv);
+    var isOpen = function () { return gv.classList.contains("is-open"); };
+    var videoOpen = function () { var lb = $("[data-lightbox]"); return lb && lb.classList.contains("is-open"); };
+    var show = function (n) {
+      cur = (n + pages.length) % pages.length;
+      var p = pages[cur];
+      img.src = p.src;
+      img.alt = "Career guide page: " + p.title + ", " + p.name;
+      $("[data-gv-title]", gv).textContent = p.title;
+      $("[data-gv-count]", gv).textContent = "· " + p.name + " · " + (cur + 1) + " of " + pages.length;
+      $("[data-gv-pdf]", gv).href = "assets/guide/career-guide.pdf#page=" + p.page;
+      if (p.video !== "") {
+        watch.classList.remove("hidden");
+        watch.setAttribute("data-video", p.video);
+        $("[data-gv-watch-label]", gv).textContent = "Watch " + p.name.split(" ")[0] + "'s interview";
+      } else { watch.classList.add("hidden"); watch.removeAttribute("data-video"); }
+      var next = pages[(cur + 1) % pages.length]; (new Image()).src = next.src;
+    };
+    var open = function (n) {
+      opener = document.activeElement;
+      show(n);
+      gv.classList.add("is-open");
+      gv.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+      $("[data-gv-close]", gv).focus();
+    };
+    var close = function () {
+      gv.classList.remove("is-open");
+      gv.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+      opener && opener.focus();
+    };
+    $$("[data-guide-open]").forEach(function (b) {
+      b.addEventListener("click", function () { open(+b.getAttribute("data-guide-open")); });
+    });
+    $("[data-gv-close]", gv).addEventListener("click", close);
+    $$("[data-gv-prev]", gv).forEach(function (b) { b.addEventListener("click", function () { show(cur - 1); }); });
+    $$("[data-gv-next]", gv).forEach(function (b) { b.addEventListener("click", function () { show(cur + 1); }); });
+    gv.addEventListener("click", function (e) { if (e.target === gv) close(); });
+    gv.addEventListener("keydown", function (e) { trap(gv, e); });
+    document.addEventListener("keydown", function (e) {
+      if (!isOpen() || videoOpen()) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") show(cur - 1);
+      else if (e.key === "ArrowRight") show(cur + 1);
+    }, true);
+    var sx = null;
+    img.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    img.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx; sx = null;
+      if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+    });
+  })();
 
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();

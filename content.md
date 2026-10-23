@@ -120,11 +120,15 @@ A wastewater agency also needs people who manage money, buy equipment, share its
 ## Words of wisdom (home page)
 
 - Sameet Shankar, Maintenance Director: "The knowledge is something nobody can ever take away from me. So it's learn to be a sponge and explore into this industry."
-- Matt Anderson, Chief Financial Officer: "In our careers, we kind of respond to the conditions we're met with, and we do our best to make the right decision, and we grow from there."
-- Sylvia Alejos, Procurement Specialist: "If you become more personable, people will help you a lot more."
-- Chris, Electrician: "I'd say the most important thing is to keep trying, being persistent, because you never know what you're going to get into. Even if you don't like it at first, maybe you'll learn some stuff that you could use in another job."
+- Matt Anderson, Chief Financial Officer: "In our careers, we kind of respond to the conditions where we're met with, and we do our best to make the right decision, and we grow from there."
+- Sylvia Alejos, Procurement Specialist: "If you become more personable, people will help you a lot more." / "I wish I knew I could do more than what I thought I could."
+- Chris Leon, Electrician: "I'd say the most important thing is to keep trying, being persistent, because you never know what you're going to get into. I mean, even if you don't like it at first, maybe you'll learn some stuff that you could use in another job." / "Sometimes you're not going to have the answer to what you need to accomplish and knowing when to ask for help [is incredibly important]."
 - Angelo, Control Systems Technician: "Always be curious. The more curious you are, the more you're going to end up having people that are going to want to feed that curiosity."
-- Sylvia Alejos, Procurement Specialist: "I wish I knew I could do more than what I thought I could."
+- Sean Rodriguez, Maintenance Supervisor: "It's whatever you want to put into it, is what you're going to get out of it." / "You can't motivate people. You can inspire people [though]." / "You still learn a lot from bad leaders, too. Not just the good leads. You learn a lot about the qualities of bad leaders, and you take all the good and the bad, and hopefully you can form something that you can be a little better at." / "You can teach anybody anything, you know? If you made it that far to an interview, it means you're pretty much qualified for the job. Now we're just going to gauge your personality towards how this [job] is going to work."
+- Matt Zucca, Authority Manager: "At the end of the day, what we talk about here is that we learn when we're uncomfortable, and we learn from our mistakes… And so the main thing is to just keep pushing at it and keep trying."
+- Danny Buenrostro, Chief Operating Officer: "You're always going to teach someone and you're just continuing to keep this industry afloat."
+- Will Swalve, Senior Mechanic: "You have to be able to problem solve on your own, but it takes a village; the experience of the other mechanics is very helpful. We help each other."
+- Adam Schone, Senior Operator: "It's such a fun and awesome field. I enjoy it quite a bit."
 
 ## Career quiz
 

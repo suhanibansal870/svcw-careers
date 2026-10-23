@@ -8,6 +8,7 @@ Interviews play in a pop-up player on the page. YouTube only allows this when th
 The videos can be Public or Unlisted, but not Private, and "Allow embedding" must be on in YouTube Studio.
 
 ## Files
+- `assets/guide/`: Emma's career guide (the full PDF, plus one image per page for the viewer on the interviews page)
 - `index.html`, `interviews.html`, `careers.html`, `quiz.html`, `404.html`: pages
 - `explore.html`: only redirects old links to the Interviews or Careers page
 - Link tips: `careers.html#lab` jumps to that career; `interviews.html#lab` shows only that area's interviews
